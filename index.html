@@ -768,6 +768,29 @@
       letter-spacing: .5px;
     }
 
+    input.input-error,
+    select.input-error,
+    textarea.input-error {
+      border-color: #dc2626 !important;
+      background: #fff5f5 !important;
+      box-shadow: 0 0 0 4px rgba(220,38,38,.1) !important;
+    }
+
+    .field-error {
+      display: block;
+      font-size: .78rem;
+      color: #dc2626;
+      font-weight: 600;
+      margin-top: 5px;
+      animation: shake .35s ease;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-5px); }
+      60%      { transform: translateX(5px); }
+    }
+
     /* ========================
        FOOTER
     ======================== */
@@ -1074,7 +1097,7 @@
     acompanantesGroup.style.display = asistentesSelect.value !== '1 persona' ? 'block' : 'none';
   });
 
-  // Envío del formulario
+  // ——— Validación visual de campos ———
   const form        = document.getElementById('registroForm');
   const submitBtn   = document.getElementById('submitBtn');
   const formCard    = document.getElementById('formContainer');
@@ -1083,14 +1106,91 @@
 
   const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwW21SPPc_6rMu8wcIGUrHyLykiRB3w1_WdUB0qrWfmEs-hPM2gU7bW4tEWySnk05FoZw/exec';
 
+  // Marcar/desmarcar error en un campo
+  function setError(el, msg) {
+    el.classList.add('input-error');
+    let hint = el.parentElement.querySelector('.field-error');
+    if (!hint) {
+      hint = document.createElement('span');
+      hint.className = 'field-error';
+      el.parentElement.appendChild(hint);
+    }
+    hint.textContent = msg;
+  }
+
+  function clearError(el) {
+    el.classList.remove('input-error');
+    const hint = el.parentElement.querySelector('.field-error');
+    if (hint) hint.remove();
+  }
+
+  // Limpiar error al escribir
+  ['nombre','telefono','email'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearError(el));
+  });
+
+  document.getElementById('acepto').addEventListener('change', () => {
+    const wrap = document.querySelector('.check-wrap');
+    wrap.style.borderColor = '';
+    wrap.style.background  = '';
+    const hint = wrap.parentElement.querySelector('.field-error');
+    if (hint) hint.remove();
+  });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    if (!document.getElementById('acepto').checked) {
-      document.querySelector('.check-wrap').style.borderColor = '#dc2626';
-      document.querySelector('.check-wrap').style.background  = '#fff5f5';
-      document.querySelector('.check-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
+    // —— Validar campos obligatorios ——
+    let valid = true;
+    let firstInvalid = null;
+
+    const nombreEl   = document.getElementById('nombre');
+    const telefonoEl = document.getElementById('telefono');
+    const checkEl    = document.getElementById('acepto');
+
+    // Nombre
+    if (!nombreEl.value.trim()) {
+      setError(nombreEl, 'Por favor, escribe tu nombre y apellidos.');
+      if (!firstInvalid) firstInvalid = nombreEl;
+      valid = false;
+    } else {
+      clearError(nombreEl);
+    }
+
+    // Teléfono
+    const telLimpio = telefonoEl.value.replace(/\s/g, '');
+    if (!telLimpio) {
+      setError(telefonoEl, 'Por favor, escribe tu teléfono de contacto.');
+      if (!firstInvalid) firstInvalid = telefonoEl;
+      valid = false;
+    } else if (!/^[+]?[\d]{9,15}$/.test(telLimpio)) {
+      setError(telefonoEl, 'El teléfono no parece válido (mínimo 9 dígitos).');
+      if (!firstInvalid) firstInvalid = telefonoEl;
+      valid = false;
+    } else {
+      clearError(telefonoEl);
+    }
+
+    // Checkbox obligatorio
+    if (!checkEl.checked) {
+      const wrap = document.querySelector('.check-wrap');
+      wrap.style.borderColor = '#dc2626';
+      wrap.style.background  = '#fff5f5';
+      let hint = wrap.parentElement.querySelector('.field-error');
+      if (!hint) {
+        hint = document.createElement('span');
+        hint.className = 'field-error';
+        wrap.parentElement.appendChild(hint);
+      }
+      hint.textContent = 'Debes marcar esta casilla para continuar.';
+      if (!firstInvalid) firstInvalid = wrap;
+      valid = false;
+    }
+
+    if (!valid) {
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return; // ← No envía si hay errores
     }
 
     submitBtn.disabled = true;
