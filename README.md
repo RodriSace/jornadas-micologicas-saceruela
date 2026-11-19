@@ -2,5 +2,5 @@
 
 Web de inscripción pública para la actividad micológica gratuita (sin comida).
 
-- **Destino de las inscripciones:** `rodrigo.de@alu.uclm.es` (a través de FormSubmit).
-- **Publicado en GitHub Pages:** `https://rodrisace.github.io/jornadas-micologicas-saceruela/`
+- **Destino:** Google Sheets (base de datos conectada en tiempo real).
+- **Publicado en GitHub Pages:** https://rodrisace.github.io/jornadas-micologicas-saceruela/

@@ -396,10 +396,6 @@
     <main class="form-card" id="formContainer">
       <form id="registroForm">
         
-        <!-- Configuración FormSubmit -->
-        <input type="hidden" name="_subject" value="🍄 Nueva Inscripción: Jornadas Micológicas Saceruela (SIN COMIDA)">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="Tipo_Inscripcion" value="Actividad Gratuita (SIN comida)">
         <input type="hidden" name="Fecha_Evento" value="28 de Noviembre - Saceruela">
 
@@ -509,17 +505,14 @@
       }
     });
 
-    // Envío del formulario con FormSubmit vía AJAX
+    // Envío del formulario a Google Sheets
     const form = document.getElementById('registroForm');
     const submitBtn = document.getElementById('submitBtn');
     const formContainer = document.getElementById('formContainer');
     const successContainer = document.getElementById('successContainer');
     const resumenDatos = document.getElementById('resumenDatos');
 
-    // Configuración de destino
-    const DESTINO_EMAIL = 'steven2004rex@gmail.com';
-    // Si tienes el enlace de Google Apps Script, pégalo aquí abajo:
-    let GOOGLE_SHEET_URL = ''; 
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwW21SPPc_6rMu8wcIGUrHyLykiRB3w1_WdUB0qrWfmEs-hPM2gU7bW4tEWySnk05FoZw/exec'; 
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -534,53 +527,35 @@
 
       const formData = new FormData(form);
 
-      // Enviar a Google Sheet si está configurado
-      const promises = [];
-
-      if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL.trim() !== '') {
-        promises.push(
-          fetch(GOOGLE_SHEET_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formData
-          }).catch(err => console.log('Error enviando a Sheet:', err))
-        );
-      }
-
-      // Enviar a FormSubmit con timeout rápido para que no se quede colgado
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 6000); // 6 segundos máx
-
-      promises.push(
-        fetch(`https://formsubmit.co/ajax/${DESTINO_EMAIL}`, {
+      try {
+        await fetch(GOOGLE_SHEET_URL, {
           method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: formData,
-          signal: controller.signal
-        }).then(r => r.json()).catch(err => console.log('FormSubmit aviso:', err))
-      );
+          mode: 'no-cors',
+          body: formData
+        });
 
-      // Esperar un instante para procesar
-      await Promise.race([
-        Promise.all(promises),
-        new Promise(resolve => setTimeout(resolve, 2000))
-      ]);
+        // Mostrar confirmación en pantalla
+        const nombreVal = document.getElementById('nombre').value;
+        const telVal = document.getElementById('telefono').value;
+        const asistentesVal = asistentesSelect.value;
 
-      // Mostrar confirmación
-      const nombreVal = document.getElementById('nombre').value;
-      const telVal = document.getElementById('telefono').value;
-      const asistentesVal = asistentesSelect.value;
+        resumenDatos.innerHTML = `
+          <div><strong>Participante principal:</strong> ${nombreVal}</div>
+          <div><strong>Teléfono:</strong> ${telVal}</div>
+          <div><strong>Asistentes:</strong> ${asistentesVal}</div>
+          <div style="margin-top: 6px; color: #047857;"><strong>Modalidad:</strong> Actividad gratuita (Sin comida)</div>
+        `;
 
-      resumenDatos.innerHTML = `
-        <div><strong>Participante principal:</strong> ${nombreVal}</div>
-        <div><strong>Teléfono:</strong> ${telVal}</div>
-        <div><strong>Asistentes:</strong> ${asistentesVal}</div>
-        <div style="margin-top: 6px; color: #047857;"><strong>Modalidad:</strong> Actividad gratuita (Sin comida)</div>
-      `;
+        formContainer.style.display = 'none';
+        successContainer.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      formContainer.style.display = 'none';
-      successContainer.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        console.error('Error al registrar:', err);
+        alert('Hubo un problema al enviar la inscripción. Por favor, inténtalo de nuevo.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Confirmar Inscripción</span><span>🍄</span>';
+      }
     });
   </script>
 </body>
