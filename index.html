@@ -3,180 +3,415 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jornadas Micológicas Saceruela — 28 de Noviembre</title>
+  <title>Jornadas Micológicas de Saceruela · 28 de Noviembre</title>
+  <meta name="description" content="Inscripción a las Jornadas Micológicas de Saceruela. Actividad gratuita en el campo el 28 de noviembre. Ciudad Real.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ========================
+       RESET & BASE
+    ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --primary: #2d6a4f;
-      --primary-hover: #1b4332;
-      --primary-light: #d8f3dc;
-      --accent-warm: #d97706;
-      --accent-warm-light: #fef3c7;
-      --danger: #b91c1c;
-      --danger-bg: #fef2f2;
-      --danger-border: #fecaca;
-      --bg: #f8faf8;
-      --card-bg: #ffffff;
-      --text-main: #1f2937;
-      --text-muted: #4b5563;
-      --border: #e5e7eb;
-      --radius: 16px;
-      --shadow: 0 10px 25px -5px rgba(45, 106, 79, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --forest:   #1a3d2b;
+      --moss:     #2d6a4f;
+      --fern:     #52b788;
+      --sage:     #95d5b2;
+      --cream:    #fdf8f0;
+      --parchment:#f4ede0;
+      --amber:    #c97d2e;
+      --amber-lt: #f4c06a;
+      --rust:     #8b3a1a;
+      --rust-lt:  #fce8dc;
+      --soil:     #4a3728;
+      --charcoal: #1e1e1e;
+      --gray-700: #374151;
+      --gray-500: #6b7280;
+      --gray-300: #d1d5db;
+      --gray-100: #f9fafb;
+      --white:    #ffffff;
+      --shadow-sm: 0 2px 8px rgba(26,61,43,.10);
+      --shadow-md: 0 8px 32px rgba(26,61,43,.14);
+      --shadow-lg: 0 20px 60px rgba(26,61,43,.18);
+      --r: 18px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg);
-      color: var(--text-main);
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
       line-height: 1.6;
       min-height: 100vh;
-      padding: 24px 16px 48px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-image: radial-gradient(#d8f3dc 0.8px, transparent 0.8px);
-      background-size: 24px 24px;
+      overflow-x: hidden;
     }
 
-    .container {
+    /* ========================
+       DECORATIVE SVG BACKGROUND
+    ======================== */
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: .045;
+    }
+
+    .bg-pattern svg {
       width: 100%;
-      max-width: 580px;
+      height: 100%;
     }
 
-    .header-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 28px 24px 24px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+    /* ========================
+       PAGE WRAPPER
+    ======================== */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    /* ========================
+       HERO HEADER
+    ======================== */
+    .hero {
+      background: linear-gradient(145deg, var(--forest) 0%, #2b5e44 55%, var(--moss) 100%);
+      border-radius: 24px;
+      padding: 48px 36px 40px;
+      color: var(--white);
       text-align: center;
-      margin-bottom: 20px;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 28px;
     }
 
-    .header-card::before {
-      content: "";
+    .hero::before {
+      content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, #2d6a4f, #52b788, #d97706);
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 110%, rgba(82,183,136,.22) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 35% at 85% -10%, rgba(201,125,46,.18) 0%, transparent 70%);
     }
 
-    .badge {
+    .hero-mushrooms {
+      font-size: 3.6rem;
+      letter-spacing: .3rem;
+      margin-bottom: 16px;
+      position: relative;
+      animation: gentle-bounce 3s ease-in-out infinite;
+    }
+
+    @keyframes gentle-bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background-color: var(--primary-light);
-      color: var(--primary-hover);
-      font-size: 0.85rem;
+      gap: 8px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      color: var(--sage);
+      font-size: .8rem;
       font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      margin-bottom: 14px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      padding: 6px 18px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
     }
 
-    h1 {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: #111827;
-      line-height: 1.25;
-      margin-bottom: 8px;
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.18;
+      margin-bottom: 10px;
+      position: relative;
+      text-shadow: 0 2px 12px rgba(0,0,0,.3);
     }
 
-    .event-info {
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber-lt);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.78);
+      max-width: 440px;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+
+    .hero-pills {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 14px;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      font-weight: 500;
+      gap: 10px;
+      justify-content: center;
+      position: relative;
     }
 
-    .event-info span {
+    .hero-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--white);
+      font-size: .88rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
     }
 
-    /* Warning box */
-    .warning-box {
-      background-color: var(--danger-bg);
-      border: 1.5px solid var(--danger-border);
-      border-radius: 12px;
-      padding: 16px 18px;
-      margin-top: 18px;
-      text-align: left;
+    .hero-pill .icon { font-size: 1rem; }
+
+    /* ========================
+       ALERT SOLD-OUT
+    ======================== */
+    .alert-soldout {
+      background: linear-gradient(135deg, #fff7ed 0%, #fff1e6 100%);
+      border: 2px solid var(--amber);
+      border-radius: var(--r);
+      padding: 22px 24px;
+      margin-bottom: 28px;
       display: flex;
-      gap: 14px;
+      gap: 18px;
       align-items: flex-start;
+      box-shadow: var(--shadow-sm);
     }
 
-    .warning-icon {
-      font-size: 1.4rem;
+    .alert-soldout .alert-icon {
+      font-size: 2.2rem;
       flex-shrink: 0;
       line-height: 1;
       margin-top: 2px;
     }
 
-    .warning-text h3 {
-      font-size: 0.98rem;
+    .alert-soldout h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: var(--danger);
-      margin-bottom: 4px;
+      color: var(--rust);
+      margin-bottom: 6px;
     }
 
-    .warning-text p {
-      font-size: 0.88rem;
-      color: #7f1d1d;
-      line-height: 1.45;
+    .alert-soldout p {
+      font-size: .91rem;
+      color: #7c4a1e;
+      line-height: 1.55;
     }
 
-    /* Form container */
+    .alert-soldout p strong {
+      color: var(--rust);
+    }
+
+    /* ========================
+       INFO SECTION
+    ======================== */
+    .info-section {
+      background: var(--white);
+      border-radius: var(--r);
+      border: 1px solid var(--gray-300);
+      box-shadow: var(--shadow-sm);
+      padding: 28px 28px 24px;
+      margin-bottom: 28px;
+    }
+
+    .info-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.3rem;
+      color: var(--forest);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-section h2 .h2-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--moss);
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    .info-card {
+      background: var(--gray-100);
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .info-card .ic-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-card .ic-label {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--gray-500);
+      margin-bottom: 3px;
+    }
+
+    .info-card .ic-value {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .what-todo {
+      margin-top: 20px;
+    }
+
+    .what-todo p {
+      font-size: .93rem;
+      color: var(--gray-700);
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .activity-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .activity-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .91rem;
+      color: var(--gray-700);
+      background: var(--gray-100);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+
+    .activity-list li::before {
+      content: '🍄';
+      flex-shrink: 0;
+    }
+
+    /* ========================
+       FORM CARD
+    ======================== */
     .form-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: var(--r);
+      border: 1px solid var(--gray-300);
+      box-shadow: var(--shadow-md);
+      padding: 32px 28px;
+      margin-bottom: 28px;
     }
 
-    .form-group {
-      margin-bottom: 20px;
+    .form-card-header {
+      margin-bottom: 28px;
     }
+
+    .form-card-header h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.45rem;
+      color: var(--forest);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .form-card-header h2 .h2-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--moss);
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .form-card-header p {
+      font-size: .9rem;
+      color: var(--gray-500);
+      margin-left: 46px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--gray-300);
+      margin: 20px 0;
+    }
+
+    /* FORM ELEMENTS */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 520px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-card, .info-section { padding: 22px 18px; }
+      .hero { padding: 36px 22px 32px; }
+      .alert-soldout { padding: 18px 16px; gap: 12px; }
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group:last-of-type { margin-bottom: 0; }
 
     label {
       display: block;
-      font-size: 0.92rem;
+      font-size: .86rem;
       font-weight: 600;
-      color: #374151;
+      color: var(--gray-700);
       margin-bottom: 7px;
+      letter-spacing: .2px;
     }
 
-    label .req {
-      color: var(--danger);
-      margin-left: 2px;
-    }
+    label .req { color: #dc2626; margin-left: 2px; }
+    label .opt { color: var(--gray-500); font-weight: 400; margin-left: 4px; font-size: .82rem; }
 
     .input-hint {
       display: block;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 4px;
+      font-size: .78rem;
+      color: var(--gray-500);
+      margin-top: 5px;
     }
 
     input[type="text"],
@@ -186,377 +421,541 @@
     textarea {
       width: 100%;
       padding: 13px 15px;
-      font-size: 1rem;
+      font-size: .97rem;
       font-family: inherit;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      background-color: #ffffff;
-      color: var(--text-main);
-      transition: all 0.2s ease;
+      border: 1.5px solid var(--gray-300);
+      border-radius: 11px;
+      background: #fafafa;
+      color: var(--charcoal);
+      transition: border-color .2s, box-shadow .2s, background .2s;
       outline: none;
+      appearance: none;
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3.5px rgba(45, 106, 79, 0.15);
+    input::placeholder, textarea::placeholder { color: #b0b8c5; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--moss);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(45,106,79,.12);
     }
 
-    .checkbox-group {
-      background: #f9fafb;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 16px;
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 42px;
+      cursor: pointer;
+    }
+
+    textarea { resize: vertical; min-height: 90px; }
+
+    /* CHECKBOX */
+    .check-wrap {
+      background: linear-gradient(135deg, #fff8f3 0%, #fef9f4 100%);
+      border: 1.5px solid #f5c99e;
+      border-radius: 12px;
+      padding: 16px 18px;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       cursor: pointer;
-      user-select: none;
-      transition: background-color 0.2s;
+      transition: background .2s, border-color .2s;
     }
 
-    .checkbox-group:hover {
-      background: #f3f4f6;
-    }
+    .check-wrap:hover { background: #fff3e8; border-color: var(--amber); }
 
-    .checkbox-group input[type="checkbox"] {
+    .check-wrap input[type="checkbox"] {
       width: 20px;
       height: 20px;
-      accent-color: var(--primary);
-      margin-top: 2px;
       flex-shrink: 0;
+      margin-top: 1px;
+      accent-color: var(--moss);
       cursor: pointer;
     }
 
-    .checkbox-group label {
-      font-size: 0.88rem;
+    .check-wrap label {
+      font-size: .88rem;
       font-weight: 500;
-      color: #1f2937;
-      margin-bottom: 0;
+      color: var(--soil);
       cursor: pointer;
-      line-height: 1.45;
+      line-height: 1.5;
+      margin-bottom: 0;
     }
 
-    .checkbox-group label strong {
-      color: var(--danger);
-    }
+    .check-wrap label strong { color: var(--rust); }
 
+    /* SUBMIT BUTTON */
     .btn-submit {
       width: 100%;
-      background-color: var(--primary);
-      color: white;
+      background: linear-gradient(135deg, var(--moss) 0%, var(--forest) 100%);
+      color: var(--white);
       border: none;
-      border-radius: 12px;
-      padding: 16px 20px;
+      border-radius: 13px;
+      padding: 17px 24px;
       font-size: 1.05rem;
       font-weight: 700;
+      font-family: inherit;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+      transition: transform .18s, box-shadow .18s, opacity .18s;
+      box-shadow: 0 6px 20px rgba(45,106,79,.35);
       margin-top: 24px;
+      letter-spacing: .3px;
     }
 
     .btn-submit:hover:not(:disabled) {
-      background-color: var(--primary-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(45, 106, 79, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(45,106,79,.4);
     }
 
-    .btn-submit:active:not(:disabled) {
-      transform: translateY(0);
+    .btn-submit:active:not(:disabled) { transform: translateY(0); }
+    .btn-submit:disabled { opacity: .65; cursor: not-allowed; }
+
+    .btn-submit .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255,255,255,.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      display: none;
     }
 
-    .btn-submit:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-label { opacity: .7; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* TRUST BAR */
+    .trust-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 16px;
     }
 
-    /* State messages */
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .78rem;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .trust-item .t-icon { font-size: 1rem; }
+
+    /* ========================
+       SUCCESS SCREEN
+    ======================== */
     .success-card {
       display: none;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 40px 24px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: var(--r);
+      border: 1px solid var(--gray-300);
+      box-shadow: var(--shadow-md);
+      padding: 48px 32px 40px;
       text-align: center;
+      animation: fade-up .5s ease both;
     }
 
-    .success-icon {
-      width: 68px;
-      height: 68px;
-      background-color: var(--primary-light);
-      color: var(--primary);
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-badge {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--fern), var(--moss));
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
-      margin-bottom: 18px;
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(45,106,79,.3);
     }
 
     .success-card h2 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #111827;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.9rem;
+      color: var(--forest);
       margin-bottom: 10px;
     }
 
-    .success-card p {
-      color: var(--text-muted);
-      font-size: 0.98rem;
-      line-height: 1.55;
-      margin-bottom: 22px;
+    .success-card .success-sub {
+      font-size: .97rem;
+      color: var(--gray-500);
+      max-width: 400px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
     }
 
     .summary-box {
-      background-color: #f9fafb;
-      border: 1px dashed var(--border);
+      background: var(--gray-100);
+      border: 1px dashed var(--gray-300);
       border-radius: 12px;
-      padding: 16px;
+      padding: 18px 20px;
       text-align: left;
-      font-size: 0.9rem;
-      color: var(--text-main);
+      font-size: .9rem;
+      color: var(--charcoal);
       margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .summary-box strong {
-      color: var(--primary-hover);
+    .summary-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .summary-row .sr-label {
+      font-weight: 600;
+      color: var(--forest);
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+
+    .reminder-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1.5px solid var(--fern);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .reminder-box p {
+      font-size: .88rem;
+      color: var(--forest);
+      line-height: 1.55;
     }
 
     .btn-secondary {
-      background: #f3f4f6;
-      color: #374151;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 20px;
-      font-size: 0.92rem;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      border: 1.5px solid var(--gray-300);
+      border-radius: 11px;
+      padding: 13px 24px;
+      font-size: .93rem;
       font-weight: 600;
+      font-family: inherit;
       cursor: pointer;
-      display: inline-block;
-      text-decoration: none;
+      transition: background .18s;
     }
 
-    .btn-secondary:hover {
-      background: #e5e7eb;
-    }
+    .btn-secondary:hover { background: #e5e7eb; }
 
+    /* ========================
+       FOOTER
+    ======================== */
     footer {
-      margin-top: 28px;
       text-align: center;
-      font-size: 0.82rem;
-      color: #9ca3af;
+      font-size: .78rem;
+      color: var(--gray-500);
+      padding-top: 8px;
+      line-height: 1.8;
     }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 16px 12px 32px;
-      }
-      .header-card, .form-card, .success-card {
-        padding: 22px 18px;
-      }
-      h1 {
-        font-size: 1.45rem;
-      }
-    }
+    footer strong { color: var(--moss); }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <!-- Encabezado del Evento -->
-    <header class="header-card">
-      <div class="badge">🍄 Actividad Micológica Gratuita</div>
-      <h1>Jornadas Micológicas de Saceruela</h1>
-      
-      <div class="event-info">
-        <span>📅 Sábado, 28 de Noviembre</span>
-        <span>📍 Saceruela (Ciudad Real)</span>
-      </div>
+<!-- Fondo decorativo de setas -->
+<div class="bg-pattern" aria-hidden="true">
+  <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Setas decorativas repetidas como patrón -->
+    <text x="80"  y="120"  font-size="90"  fill="#2d6a4f">🍄</text>
+    <text x="300" y="300"  font-size="60"  fill="#2d6a4f">🍄</text>
+    <text x="600" y="80"   font-size="80"  fill="#2d6a4f">🍄</text>
+    <text x="900" y="220"  font-size="70"  fill="#2d6a4f">🍄</text>
+    <text x="1100"y="90"   font-size="90"  fill="#2d6a4f">🍄</text>
+    <text x="150" y="500"  font-size="70"  fill="#2d6a4f">🍄</text>
+    <text x="450" y="600"  font-size="90"  fill="#2d6a4f">🍄</text>
+    <text x="750" y="480"  font-size="60"  fill="#2d6a4f">🍄</text>
+    <text x="1050"y="550"  font-size="80"  fill="#2d6a4f">🍄</text>
+    <text x="50"  y="750"  font-size="60"  fill="#2d6a4f">🍄</text>
+    <text x="600" y="780"  font-size="90"  fill="#2d6a4f">🍄</text>
+    <text x="1100"y="720"  font-size="70"  fill="#2d6a4f">🍄</text>
+  </svg>
+</div>
 
-      <!-- Aviso clave sobre la comida -->
-      <div class="warning-box">
-        <div class="warning-icon">⚠️</div>
-        <div class="warning-text">
-          <h3>Plazas para la comida AGOTADAS</h3>
-          <p>
-            El aforo de la comida ya está completo. Este formulario es <strong>exclusivo para apuntarse a la actividad y ruta en el campo de forma gratuita (sin comida incluida)</strong>.
-          </p>
+<div class="page">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="hero-mushrooms" aria-hidden="true">🍄🌲🍄</div>
+    <div class="hero-eyebrow">📍 Saceruela · Ciudad Real</div>
+    <h1>Jornadas Micológicas<br>de <em>Saceruela</em></h1>
+    <p class="hero-sub">
+      Una jornada en el monte para descubrir, aprender y disfrutar del mundo de las setas y los hongos de nuestra tierra manchega.
+    </p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="icon">📅</span> Sábado 28 de Noviembre, 2026</span>
+      <span class="hero-pill"><span class="icon">🌿</span> Actividad gratuita</span>
+      <span class="hero-pill"><span class="icon">👨‍👩‍👧‍👦</span> Abierto a todo el mundo</span>
+    </div>
+  </header>
+
+  <!-- ===== ALERTA INSCRIPCIONES CON COMIDA CERRADAS ===== -->
+  <div class="alert-soldout" role="alert">
+    <div class="alert-icon">🛑</div>
+    <div>
+      <h2>Inscripciones con comida: ¡Completas!</h2>
+      <p>
+        Debido a la <strong>altísima demanda y gran acogida</strong> que han tenido estas jornadas, las plazas para la comida se han agotado por completo.<br><br>
+        Sin embargo, <strong>¡las puertas del campo siguen abiertas para todo el que quiera venir!</strong> Si no conseguiste plaza con comida, puedes apuntarte aquí para participar en la <strong>actividad micológica gratuita</strong>. No te quedas sin venir por eso.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== INFORMACIÓN DEL EVENTO ===== -->
+  <section class="info-section">
+    <h2>
+      <span class="h2-icon" aria-hidden="true">📋</span>
+      Sobre las Jornadas
+    </h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="ic-icon">📅</span>
+        <div>
+          <div class="ic-label">Fecha</div>
+          <div class="ic-value">Sábado, 28 Nov. 2026</div>
         </div>
       </div>
-    </header>
+      <div class="info-card">
+        <span class="ic-icon">📍</span>
+        <div>
+          <div class="ic-label">Lugar</div>
+          <div class="ic-value">Saceruela, Ciudad Real</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="ic-icon">💶</span>
+        <div>
+          <div class="ic-label">Coste actividad</div>
+          <div class="ic-value">Totalmente gratuito</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="ic-icon">👟</span>
+        <div>
+          <div class="ic-label">Qué traer</div>
+          <div class="ic-value">Calzado cómodo y cesta</div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Formulario de Inscripción -->
-    <main class="form-card" id="formContainer">
-      <form id="registroForm">
-        
-        <input type="hidden" name="Tipo_Inscripcion" value="Actividad Gratuita (SIN comida)">
-        <input type="hidden" name="Fecha_Evento" value="28 de Noviembre - Saceruela">
+    <div class="what-todo">
+      <p>
+        Las Jornadas Micológicas de Saceruela son una oportunidad única para adentrase en los montes de Ciudad Real en busca de setas y hongos silvestres. Contaremos con la guía de expertos que nos enseñarán a identificar las especies más comunes de la zona, sus propiedades y curiosidades.
+      </p>
+      <ul class="activity-list">
+        <li>Ruta guiada por el monte en busca de setas silvestres</li>
+        <li>Identificación y clasificación de especies encontradas</li>
+        <li>Charla de expertos micólogos sobre hongos de la región</li>
+        <li>Exposición de las setas recogidas durante la jornada</li>
+        <li>Actividad apta para todas las edades y familias con niños</li>
+      </ul>
+    </div>
+  </section>
 
-        <!-- Nombre Completo -->
+  <!-- ===== FORMULARIO ===== -->
+  <main class="form-card" id="formContainer">
+    <div class="form-card-header">
+      <h2>
+        <span class="h2-icon" aria-hidden="true">📝</span>
+        Inscripción a la Actividad
+      </h2>
+      <p>Rellena tus datos para reservar tu sitio en la ruta (sin comida).</p>
+    </div>
+    <hr class="divider">
+
+    <form id="registroForm" novalidate>
+      <input type="hidden" name="Tipo_Inscripcion" value="Actividad Gratuita (SIN comida)">
+      <input type="hidden" name="Fecha_Evento"     value="28 de Noviembre 2026 — Saceruela">
+
+      <!-- Nombre + Teléfono -->
+      <div class="form-row">
         <div class="form-group">
           <label for="nombre">Nombre y Apellidos <span class="req">*</span></label>
-          <input type="text" id="nombre" name="Nombre_Completo" placeholder="Ej. María García López" required autocomplete="name">
+          <input type="text" id="nombre" name="Nombre_Completo"
+                 placeholder="María García López" required autocomplete="name">
         </div>
-
-        <!-- Teléfono -->
         <div class="form-group">
-          <label for="telefono">Teléfono de contacto <span class="req">*</span></label>
-          <input type="tel" id="telefono" name="Telefono" placeholder="Ej. 612 345 678" required autocomplete="tel">
-          <span class="input-hint">Para avisos de última hora o incidencias del tiempo.</span>
+          <label for="telefono">Teléfono <span class="req">*</span></label>
+          <input type="tel" id="telefono" name="Telefono"
+                 placeholder="612 345 678" required autocomplete="tel">
+          <span class="input-hint">Por si hay cambios de última hora.</span>
         </div>
+      </div>
 
-        <!-- Email -->
-        <div class="form-group">
-          <label for="email">Correo electrónico <span style="font-weight: normal; color: #6b7280;">(opcional)</span></label>
-          <input type="email" id="email" name="Email" placeholder="ejemplo@correo.com" autocomplete="email">
-        </div>
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Correo electrónico <span class="opt">(opcional)</span></label>
+        <input type="email" id="email" name="Email"
+               placeholder="ejemplo@correo.com" autocomplete="email">
+      </div>
 
-        <!-- Personas / Acompañantes -->
+      <!-- Asistentes -->
+      <div class="form-row">
         <div class="form-group">
-          <label for="asistentes">¿Cuántas personas asistiréis? <span class="req">*</span></label>
+          <label for="asistentes">¿Cuántos asistís? <span class="req">*</span></label>
           <select id="asistentes" name="Numero_Asistentes" required>
-            <option value="1 persona" selected>1 persona (solo yo)</option>
+            <option value="1 persona" selected>Solo yo (1 persona)</option>
             <option value="2 personas">2 personas</option>
             <option value="3 personas">3 personas</option>
             <option value="4 personas">4 personas</option>
             <option value="5 o más personas">5 o más personas</option>
           </select>
         </div>
-
-        <div class="form-group" id="acompanantesGroup" style="display: none;">
-          <label for="acompanantes">Nombres de los acompañantes / menores</label>
-          <input type="text" id="acompanantes" name="Nombres_Acompanantes" placeholder="Indica sus nombres">
-        </div>
-
-        <!-- Observaciones -->
-        <div class="form-group">
-          <label for="observaciones">Observaciones o dudas <span style="font-weight: normal; color: #6b7280;">(opcional)</span></label>
-          <textarea id="observaciones" name="Observaciones" rows="2" placeholder="Cualquier detalle que quieras comentarnos..."></textarea>
-        </div>
-
-        <!-- Checkbox de confirmación obligatoria -->
-        <div class="form-group">
-          <div class="checkbox-group">
-            <input type="checkbox" id="acepto" name="Acepta_Condicion_Sin_Comida" required>
-            <label for="acepto">
-              Entiendo y acepto que esta inscripción me da acceso a la <strong>actividad micológica gratuita</strong> y que <strong>NO incluye plaza de comida</strong>.
-            </label>
-          </div>
-        </div>
-
-        <!-- Botón de envío -->
-        <button type="submit" class="btn-submit" id="submitBtn">
-          <span>Confirmar Inscripción</span>
-          <span>🍄</span>
-        </button>
-      </form>
-    </main>
-
-    <!-- Pantalla de Éxito -->
-    <section class="success-card" id="successContainer">
-      <div class="success-icon">✓</div>
-      <h2>¡Inscripción Confirmada!</h2>
-      <p>
-        Tus datos han sido registrados correctamente para las Jornadas Micológicas en Saceruela.
-      </p>
-
-      <div class="summary-box" id="resumenDatos">
-        <!-- Rellenado por JS -->
-      </div>
-
-      <div class="warning-box" style="margin-bottom: 24px;">
-        <div class="warning-icon">ℹ️</div>
-        <div class="warning-text">
-          <h3 style="color: #92400e;">Recordatorio</h3>
-          <p style="color: #78350f;">
-            Recuerda que la inscripción es para la actividad en el campo (gratuita). <strong>No incluye comida.</strong> ¡Ven con calzado cómodo y cesta si tienes!
-          </p>
+        <div class="form-group" id="acompanantesGroup" style="display:none;">
+          <label for="acompanantes">Nombres acompañantes <span class="opt">(opcional)</span></label>
+          <input type="text" id="acompanantes" name="Nombres_Acompanantes"
+                 placeholder="Ana, Juan, Lucía…">
         </div>
       </div>
 
-      <button type="button" class="btn-secondary" onclick="location.reload()">
-        Registrar a otra persona
+      <!-- Observaciones -->
+      <div class="form-group">
+        <label for="observaciones">¿Alguna consulta o comentario? <span class="opt">(opcional)</span></label>
+        <textarea id="observaciones" name="Observaciones"
+                  placeholder="¿Vienes con niños? ¿Tienes alguna necesidad especial? Cuéntanos…"></textarea>
+      </div>
+
+      <!-- Checkbox obligatorio -->
+      <div class="form-group">
+        <div class="check-wrap">
+          <input type="checkbox" id="acepto" name="Acepta_Condicion_Sin_Comida" required>
+          <label for="acepto">
+            Entiendo que esta inscripción me da acceso a la <strong>actividad micológica gratuita</strong> y que <strong>NO incluye plaza de comida</strong>, ya que el aforo de la comida está completo.
+          </label>
+        </div>
+      </div>
+
+      <!-- Botón envío -->
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <div class="spinner"></div>
+        <span class="btn-label">Confirmar mi asistencia &nbsp;🍄</span>
       </button>
-    </section>
 
-    <footer>
-      Organización Jornadas Micológicas · Saceruela (Ciudad Real)
-    </footer>
+      <!-- Trust bar -->
+      <div class="trust-bar" aria-hidden="true">
+        <span class="trust-item"><span class="t-icon">🔒</span> Datos privados y seguros</span>
+        <span class="trust-item"><span class="t-icon">⚡</span> Registro instantáneo</span>
+        <span class="trust-item"><span class="t-icon">✅</span> Gratuito, sin condiciones</span>
+      </div>
+    </form>
+  </main>
 
-  </div>
+  <!-- ===== PANTALLA DE ÉXITO ===== -->
+  <section class="success-card" id="successContainer" aria-live="polite">
+    <div class="success-badge" aria-hidden="true">✓</div>
+    <h2>¡Ya estás apuntado/a! 🎉</h2>
+    <p class="success-sub">
+      Tu inscripción ha quedado registrada correctamente. ¡Nos vemos el <strong>28 de noviembre en Saceruela</strong>!
+    </p>
 
-  <script>
-    // Mostrar/ocultar campo de acompañantes según la selección
-    const asistentesSelect = document.getElementById('asistentes');
-    const acompanantesGroup = document.getElementById('acompanantesGroup');
+    <div class="summary-box" id="resumenDatos"></div>
 
-    asistentesSelect.addEventListener('change', () => {
-      if (asistentesSelect.value !== '1 persona') {
-        acompanantesGroup.style.display = 'block';
-      } else {
-        acompanantesGroup.style.display = 'none';
-      }
-    });
+    <div class="reminder-box">
+      <span style="font-size:1.5rem; flex-shrink:0;">🎒</span>
+      <p>
+        <strong>Recuerda para el día 28:</strong> ven con calzado cómodo de monte, ropa de abrigo y, si tienes, una cesta o bolsa para las setas que encontremos. ¡Va a ser una jornada genial!
+      </p>
+    </div>
 
-    // Envío del formulario a Google Sheets
-    const form = document.getElementById('registroForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const formContainer = document.getElementById('formContainer');
-    const successContainer = document.getElementById('successContainer');
-    const resumenDatos = document.getElementById('resumenDatos');
+    <button type="button" class="btn-secondary" onclick="location.reload()">
+      Registrar a otra persona
+    </button>
+  </section>
 
-    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwW21SPPc_6rMu8wcIGUrHyLykiRB3w1_WdUB0qrWfmEs-hPM2gU7bW4tEWySnk05FoZw/exec'; 
+  <footer>
+    <strong>Jornadas Micológicas de Saceruela</strong> · 28 de Noviembre · Ciudad Real<br>
+    La actividad es gratuita y abierta a todos los que quieran participar.
+  </footer>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+</div><!-- /page -->
 
-      if (!document.getElementById('acepto').checked) {
-        alert('Debes marcar la casilla aceptando que la inscripción no incluye comida.');
-        return;
-      }
+<script>
+  // Mostrar/ocultar campo de acompañantes
+  const asistentesSelect = document.getElementById('asistentes');
+  const acompanantesGroup = document.getElementById('acompanantesGroup');
 
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Registrando inscripción...</span>';
+  asistentesSelect.addEventListener('change', () => {
+    acompanantesGroup.style.display = asistentesSelect.value !== '1 persona' ? 'block' : 'none';
+  });
 
-      const formData = new FormData(form);
+  // Envío del formulario
+  const form        = document.getElementById('registroForm');
+  const submitBtn   = document.getElementById('submitBtn');
+  const formCard    = document.getElementById('formContainer');
+  const successCard = document.getElementById('successContainer');
+  const resumenDatos= document.getElementById('resumenDatos');
 
-      try {
-        await fetch(GOOGLE_SHEET_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData
-        });
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwW21SPPc_6rMu8wcIGUrHyLykiRB3w1_WdUB0qrWfmEs-hPM2gU7bW4tEWySnk05FoZw/exec';
 
-        // Mostrar confirmación en pantalla
-        const nombreVal = document.getElementById('nombre').value;
-        const telVal = document.getElementById('telefono').value;
-        const asistentesVal = asistentesSelect.value;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        resumenDatos.innerHTML = `
-          <div><strong>Participante principal:</strong> ${nombreVal}</div>
-          <div><strong>Teléfono:</strong> ${telVal}</div>
-          <div><strong>Asistentes:</strong> ${asistentesVal}</div>
-          <div style="margin-top: 6px; color: #047857;"><strong>Modalidad:</strong> Actividad gratuita (Sin comida)</div>
-        `;
+    if (!document.getElementById('acepto').checked) {
+      document.querySelector('.check-wrap').style.borderColor = '#dc2626';
+      document.querySelector('.check-wrap').style.background  = '#fff5f5';
+      document.querySelector('.check-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
 
-        formContainer.style.display = 'none';
-        successContainer.style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    submitBtn.querySelector('.btn-label').textContent = 'Registrando…';
 
-      } catch (err) {
-        console.error('Error al registrar:', err);
-        alert('Hubo un problema al enviar la inscripción. Por favor, inténtalo de nuevo.');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>Confirmar Inscripción</span><span>🍄</span>';
-      }
-    });
-  </script>
+    const formData = new FormData(form);
+
+    try {
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode:   'no-cors',
+        body:   formData
+      });
+
+      const nombre     = document.getElementById('nombre').value;
+      const telefono   = document.getElementById('telefono').value;
+      const asistentes = asistentesSelect.value;
+      const acomp      = document.getElementById('acompanantes').value;
+
+      resumenDatos.innerHTML = `
+        <div class="summary-row"><span class="sr-label">👤 Nombre:</span><span>${nombre}</span></div>
+        <div class="summary-row"><span class="sr-label">📞 Teléfono:</span><span>${telefono}</span></div>
+        <div class="summary-row"><span class="sr-label">👥 Asistentes:</span><span>${asistentes}</span></div>
+        ${acomp ? `<div class="summary-row"><span class="sr-label">👨‍👩‍👧 Acompañantes:</span><span>${acomp}</span></div>` : ''}
+        <div class="summary-row"><span class="sr-label">🍄 Modalidad:</span><span style="color:#2d6a4f; font-weight:600;">Actividad gratuita (sin comida)</span></div>
+      `;
+
+      formCard.style.display    = 'none';
+      successCard.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      console.error(err);
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      submitBtn.querySelector('.btn-label').textContent = 'Confirmar mi asistencia 🍄';
+      alert('Ha habido un problema al enviar. Comprueba tu conexión e inténtalo de nuevo.');
+    }
+  });
+</script>
 </body>
 </html>
