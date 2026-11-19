@@ -177,7 +177,18 @@
       backdrop-filter: blur(8px);
     }
 
-    .hero-pill .icon { font-size: 1rem; }
+    .hero-edition {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      border: 1px solid rgba(244,192,106,.35);
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
 
     /* ========================
        ALERT SOLD-OUT
@@ -659,6 +670,105 @@
     .btn-secondary:hover { background: #e5e7eb; }
 
     /* ========================
+       PROGRAMME
+    ======================== */
+    .programme-section { padding-bottom: 20px; }
+
+    .day-block {
+      margin-bottom: 24px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--gray-300);
+    }
+
+    .day-block:last-child { margin-bottom: 0; }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+    }
+
+    .day-viernes {
+      background: linear-gradient(135deg, #1a3d2b 0%, #2d6a4f 100%);
+      color: white;
+    }
+
+    .day-sabado {
+      background: linear-gradient(135deg, #7b3f1a 0%, #c97d2e 100%);
+      color: white;
+    }
+
+    .day-emoji { font-size: 1.8rem; flex-shrink: 0; }
+
+    .day-name {
+      display: block;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .day-venue {
+      display: block;
+      font-size: .78rem;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    .schedule-list {
+      list-style: none;
+      background: var(--white);
+    }
+
+    .schedule-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 11px 18px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: .88rem;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    .schedule-list li:last-child { border-bottom: none; }
+
+    .schedule-list li.sch-highlight {
+      background: #f0fdf4;
+    }
+
+    .schedule-list li.sch-comida {
+      background: #fff8f3;
+      opacity: .75;
+    }
+
+    .sch-time {
+      font-weight: 700;
+      color: var(--moss);
+      min-width: 72px;
+      flex-shrink: 0;
+      font-size: .82rem;
+      padding-top: 1px;
+    }
+
+    .sch-desc { flex: 1; }
+
+    .sold-badge {
+      display: inline-block;
+      background: #fecaca;
+      color: #991b1b;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    /* ========================
        FOOTER
     ======================== */
     footer {
@@ -699,12 +809,13 @@
   <header class="hero">
     <div class="hero-mushrooms" aria-hidden="true">🍄🌲🍄</div>
     <div class="hero-eyebrow">📍 Saceruela · Ciudad Real</div>
-    <h1>Jornadas Micológicas<br>de <em>Saceruela</em></h1>
+    <div class="hero-edition">XXIX Edición</div>
+    <h1>Jornadas Micológicas<br>y del Medio Ambiente<br>de <em>Saceruela</em></h1>
     <p class="hero-sub">
-      Una jornada en el monte para descubrir, aprender y disfrutar del mundo de las setas y los hongos de nuestra tierra manchega.
+      Un fin de semana para disfrutar de la naturaleza, descubrir el fascinante mundo de las setas y compartir nuestras tradiciones manchegas.
     </p>
     <div class="hero-pills">
-      <span class="hero-pill"><span class="icon">📅</span> Sábado 28 de Noviembre, 2026</span>
+      <span class="hero-pill"><span class="icon">📅</span> 27 y 28 de Noviembre, 2026</span>
       <span class="hero-pill"><span class="icon">🌿</span> Actividad gratuita</span>
       <span class="hero-pill"><span class="icon">👨‍👩‍👧‍👦</span> Abierto a todo el mundo</span>
     </div>
@@ -726,14 +837,14 @@
   <section class="info-section">
     <h2>
       <span class="h2-icon" aria-hidden="true">📋</span>
-      Sobre las Jornadas
+      Datos del Evento
     </h2>
     <div class="info-grid">
       <div class="info-card">
         <span class="ic-icon">📅</span>
         <div>
-          <div class="ic-label">Fecha</div>
-          <div class="ic-value">Sábado, 28 Nov. 2026</div>
+          <div class="ic-label">Fechas</div>
+          <div class="ic-value">27 y 28 de Nov. 2026</div>
         </div>
       </div>
       <div class="info-card">
@@ -754,21 +865,85 @@
         <span class="ic-icon">👟</span>
         <div>
           <div class="ic-label">Qué traer</div>
-          <div class="ic-value">Calzado cómodo y cesta</div>
+          <div class="ic-value">Calzado de monte y cesta</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="what-todo">
-      <p>
-        Las Jornadas Micológicas de Saceruela son una oportunidad única para adentrase en los montes de Ciudad Real en busca de setas y hongos silvestres. Contaremos con la guía de expertos que nos enseñarán a identificar las especies más comunes de la zona, sus propiedades y curiosidades.
-      </p>
-      <ul class="activity-list">
-        <li>Ruta guiada por el monte en busca de setas silvestres</li>
-        <li>Identificación y clasificación de especies encontradas</li>
-        <li>Charla de expertos micólogos sobre hongos de la región</li>
-        <li>Exposición de las setas recogidas durante la jornada</li>
-        <li>Actividad apta para todas las edades y familias con niños</li>
+  <!-- ===== PROGRAMA ===== -->
+  <section class="info-section programme-section">
+    <h2>
+      <span class="h2-icon" aria-hidden="true">🗓️</span>
+      Programa Completo
+    </h2>
+
+    <!-- Día 1 -->
+    <div class="day-block">
+      <div class="day-header day-viernes">
+        <span class="day-emoji">✨</span>
+        <div>
+          <span class="day-name">Viernes 27 de Noviembre</span>
+          <span class="day-venue">Aula Rodríguez de la Rubia · E.T.S.I. Agrónomos</span>
+        </div>
+      </div>
+      <ul class="schedule-list">
+        <li>
+          <span class="sch-time">17:30 h.</span>
+          <span class="sch-desc">🎤 <strong>Presentación</strong> de las Jornadas.</span>
+        </li>
+        <li>
+          <span class="sch-time">18:00 h.</span>
+          <span class="sch-desc">🍄 <strong>Conferencia:</strong> <em>Introducción a la micología</em>, por D. Juan Antonio Campos.</span>
+        </li>
+        <li>
+          <span class="sch-time">18:45 h.</span>
+          <span class="sch-desc">🌰 <strong>Conferencia:</strong> <em>Tesoro bajo la tierra · Tuber melanosporum</em>, por D. Emilio José Fernández Rosa.</span>
+        </li>
+        <li class="sch-highlight">
+          <span class="sch-time">20:00 h.</span>
+          <span class="sch-desc">🥂 <strong>Aperitivo</strong> ofrecido por el Ayuntamiento de Saceruela.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Día 2 -->
+    <div class="day-block">
+      <div class="day-header day-sabado">
+        <span class="day-emoji">🍄</span>
+        <div>
+          <span class="day-name">Sábado 28 de Noviembre</span>
+          <span class="day-venue">Saceruela · Pinares y dehesas</span>
+        </div>
+      </div>
+      <ul class="schedule-list">
+        <li>
+          <span class="sch-time">9:30 h.</span>
+          <span class="sch-desc">🌳 <strong>Inscripción e inauguración</strong> de las jornadas.</span>
+        </li>
+        <li>
+          <span class="sch-time">10:00 h.</span>
+          <span class="sch-desc">🎓 <strong>Charla-coloquio:</strong> <em>Recomendaciones y consejos para salir a buscar setas</em>, por D. Domingo Cózar.</span>
+        </li>
+        <li class="sch-highlight">
+          <span class="sch-time">10:30 h.</span>
+          <span class="sch-desc">🌲 <strong>Excursión micológica</strong> por los pinares y dehesas de Saceruela. <em>(Actividad abierta a todos)</em></span>
+        </li>
+        <li class="sch-comida">
+          <span class="sch-time">13:30 h.</span>
+          <span class="sch-desc">
+            🥘 <strong>Migas camperas</strong> en el Pabellón Municipal.
+            <span class="sold-badge">Plazas agotadas</span>
+          </span>
+        </li>
+        <li>
+          <span class="sch-time">16:30 h.</span>
+          <span class="sch-desc">🔎 <strong>Clasificación</strong> de las setas recolectadas y montaje de la exposición micológica.</span>
+        </li>
+        <li>
+          <span class="sch-time">Todo el día</span>
+          <span class="sch-desc">🎨 <strong>Exposición</strong> de trabajos realizados por los alumnos del Colegio Virgen de las Cruces.</span>
+        </li>
       </ul>
     </div>
   </section>
